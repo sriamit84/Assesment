@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetailsService"/>
+<fullyQualifiedTypeName name="com.comp.familyTree.controller.FamilyTreeController"/>
+<fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+<fullyQualifiedTypeName name="java.util.Optional"/>
+<fullyQualifiedTypeName name="com.comp.familyTree.entities.Data"/>
+<fullyQualifiedTypeName name="com.comp.familyTree.model.Node"/>
+<fullyQualifiedTypeName name="com.comp.familyTree.model.Link"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.comp.familyTree.util.FamilyTreeUtil"/>
+<fullyQualifiedTypeName name="com.comp.familyTree.model.FamilyTreeGraph"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.io.Serializable"/>
+<fullyQualifiedTypeName name="com.comp.familyTree.entities.Person"/>
+</qualifiedTypeNameHistroy>

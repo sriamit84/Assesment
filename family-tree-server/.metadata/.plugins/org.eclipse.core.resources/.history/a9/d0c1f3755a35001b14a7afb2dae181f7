@@ -1,0 +1,69 @@
+package com.comp.familyTree.service.impl;
+
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.comp.familyTree.dao.FamilyTreeRepository;
+import com.comp.familyTree.entities.Person;
+import com.comp.familyTree.error.FamilyTreeException;
+import com.comp.familyTree.error.PersonNotFoundException;
+import com.comp.familyTree.service.PersonService;
+
+@Service
+public class PersonServiceImpl implements PersonService {
+
+	@Value("${mappingFileName}")
+	String mappingFileName;
+
+	@Autowired
+	private FamilyTreeRepository productRepository;
+
+
+	@Override
+	@Transactional
+	public Person savePerson(Person product) throws FamilyTreeException {
+		try {
+			return productRepository.save(product);
+		} catch (Exception e) {
+			throw new FamilyTreeException("Error when saving the product with details :" + product.toString());
+		}
+
+	}
+
+	@Override
+	public Person getPersonDetails(Long productId) throws FamilyTreeException {
+		try {
+			Optional<Person> productDetails = productRepository.findById(productId);
+			if (productDetails.isPresent())
+				return productDetails.get();
+			else {
+				throw new PersonNotFoundException("Product with id " + productId + " not found");
+			}
+		} catch (Exception e) {
+			throw new FamilyTreeException("Error when fetching the product with id :" + productId);
+		}
+	}
+
+	@Override
+	@Transactional
+	public Person updateProduct(Long productId, @Valid Person product)
+			throws PersonNotFoundException, FamilyTreeException {
+		try {
+			Optional<Person> productDetails = productRepository.findById(productId);
+			if (productDetails.isPresent()) {
+				return productRepository.save(product);
+			} else {
+				throw new PersonNotFoundException("Product with id " + productId + " not found");
+			}
+		} catch (Exception e) {
+			throw new FamilyTreeException("Error when updating the product with id :" + productId);
+		}
+	}
+
+}

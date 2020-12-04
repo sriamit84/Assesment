@@ -1,0 +1,205 @@
+package com.tatacliq.product;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import com.comp.familyTree.controller.FamilyTreeController;
+import com.comp.familyTree.entities.MetaField;
+import com.comp.familyTree.entities.Person;
+import com.comp.familyTree.entities.ProductPrice;
+import com.comp.familyTree.response.PersonResponse;
+
+@SpringBootTest
+@AutoConfigureMockMvc
+@TestMethodOrder(OrderAnnotation.class)
+public class ProductServiceApplicationTests extends AbstractTest {
+
+	@Autowired
+	MockMvc mockMvc;
+
+	@MockBean
+	FamilyTreeController familyTreeController;
+
+
+	@Test
+	@Order(1)
+	public void createProduct() throws Exception {
+		Person person = new Person();
+		
+		PersonResponse productResponse= new PersonResponse().setItem(person);
+		
+		String json = mapToJson(person);
+		ResponseEntity<PersonResponse> productResponseEntity = new ResponseEntity<PersonResponse>(productResponse,HttpStatus.CREATED);
+		when(familyTreeController.savePerson(person)).thenReturn(productResponseEntity);
+		
+	    RequestBuilder requestBuilder = MockMvcRequestBuilders
+	            .post("/api/v1/products")
+	            .accept(MediaType.APPLICATION_JSON)
+	            .content(json)
+	            .contentType(MediaType.APPLICATION_JSON);
+
+	    MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+	    MockHttpServletResponse response = result.getResponse();
+
+	    assertEquals(HttpStatus.OK.value(), response.getStatus());
+	}
+	
+	@Test
+	@Order(1)
+	public void createProductWithValidationError() throws Exception {
+		Person person = new Person();
+		
+		PersonResponse productResponse= new PersonResponse().setItem(person);
+		
+		String json = mapToJson(person);
+		ResponseEntity<PersonResponse> productResponseEntity = new ResponseEntity<PersonResponse>(productResponse,HttpStatus.INTERNAL_SERVER_ERROR);
+		when(familyTreeController.savePerson(person)).thenReturn(productResponseEntity);
+		
+	    RequestBuilder requestBuilder = MockMvcRequestBuilders
+	            .post("/api/v1/products")
+	            .accept(MediaType.APPLICATION_JSON)
+	            .content(json)
+	            .contentType(MediaType.APPLICATION_JSON);
+
+	    MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+	    MockHttpServletResponse response = result.getResponse();
+
+	    assertEquals(HttpStatus.BAD_REQUEST.value(), response.getStatus());
+	}
+	
+	@Test
+	@Order(1)
+	public void createProductWithValidation() throws Exception {
+		Person person = new Person();
+		
+		PersonResponse productResponse= new PersonResponse().setItem(person);
+		
+		String json = mapToJson(person);
+		ResponseEntity<PersonResponse> productResponseEntity = new ResponseEntity<PersonResponse>(productResponse,HttpStatus.CREATED);
+		when(familyTreeController.savePerson(person)).thenReturn(productResponseEntity);
+		
+	    RequestBuilder requestBuilder = MockMvcRequestBuilders
+	            .post("/api/v1/person")
+	            .accept(MediaType.APPLICATION_JSON)
+	            .content(json)
+	            .contentType(MediaType.APPLICATION_JSON);
+
+	    MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+	    MockHttpServletResponse response = result.getResponse();
+
+	    assertEquals(HttpStatus.OK.value(), response.getStatus());
+	}
+
+	@Test
+	@Order(2)
+	public void getProductById() throws Exception {
+
+		Person person = new Person();
+		
+		PersonResponse productResponse= new PersonResponse().setItem(person);
+		ResponseEntity<PersonResponse> productResponseEntity = new ResponseEntity<PersonResponse>(productResponse,HttpStatus.OK);
+		when(familyTreeController.getPersonDetails("test")).thenReturn(productResponseEntity);
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/person/1")).andExpect(status().isOk())
+				.andExpect(jsonPath("$.data.item.sellerId").value(1));
+	}
+
+	@Test
+	@Order(3)
+	public void updatePerson() throws Exception {
+
+		Person person = new Person();
+		
+		PersonResponse productResponse= new PersonResponse().setItem(person);
+		ResponseEntity<PersonResponse> productResponseEntity = new ResponseEntity<PersonResponse>(productResponse,HttpStatus.OK);
+		when(familyTreeController.getPersonDetails("test")).thenReturn(productResponseEntity);
+
+		String json = mapToJson(person);
+		mockMvc.perform(
+				MockMvcRequestBuilders.put("/api/v1/products/1").contentType(MediaType.APPLICATION_JSON_VALUE).content(json))
+				.andExpect(status().isOk());
+		;
+	}
+
+	@Test
+	@Order(4)
+	public void saveProductPrice() throws Exception {
+
+		Person product = new Person();
+		product.setProductId(1L);
+		ProductPrice productPrice = new ProductPrice();
+		productPrice.setMax(100.90);
+		productPrice.setMin(10.90);
+		productPrice.setRange("10-105");
+		product.setProductPrice(productPrice);
+		String json = mapToJson(product);
+		PersonResponse productResponse= new PersonResponse().setItem(product);
+		ResponseEntity<PersonResponse> productResponseEntity = new ResponseEntity<PersonResponse>(productResponse,HttpStatus.OK);
+		when(familyTreeController.saveProductPrice(1L, productPrice))
+				.thenReturn(productResponseEntity);
+		mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/products/1/price").contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(json));
+	}
+
+	@Test
+	@Order(5)
+	public void getProductPrice() throws Exception {
+		Person product = new Person();
+		product.setSellerId("1");
+		product.setTitle("Test1");
+		product.setManufacturer("Test");
+		product.setIsLowQuantity(false);
+		product.setIsBackorder(false);
+		product.setIsSoldOut(false);
+		MetaField metaField = new MetaField();
+		metaField.setKey("1");
+		metaField.setValue("Test Value");
+		List<MetaField> metaFields = new ArrayList<MetaField>();
+		metaFields.add(metaField);
+		product.setMetafields(metaFields);
+
+		product.setRequiresShipping(false);
+		product.setIsVisible(true);
+		product.setPublishedAt(new Date());
+		product.setCreatedAt(new Date());
+		product.setWorkflowStatus("new");
+		ProductPrice productPrice = new ProductPrice();
+		productPrice.setMax(100.90);
+		productPrice.setMin(10.90);
+		productPrice.setRange("10-105");
+		product.setProductPrice(productPrice);
+
+		PersonResponse productResponse= new PersonResponse().setItem(product);
+		ResponseEntity<PersonResponse> productResponseEntity = new ResponseEntity<PersonResponse>(productResponse,HttpStatus.OK);
+		when(familyTreeController.getProductPrice(1L)).thenReturn(productResponseEntity);
+		mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/products/1/price")).andExpect(status().isOk())
+				.andExpect(jsonPath("$.data.item.productPrice.min").value(10.90));
+		;
+	}
+
+}

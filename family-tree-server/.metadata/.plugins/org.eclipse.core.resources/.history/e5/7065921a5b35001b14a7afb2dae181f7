@@ -1,0 +1,32 @@
+package com.comp.familyTree.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "products")
+public class Person {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long personId;
+
+	@NotNull(message = "sellerId cannot be null")
+	private String personName;
+
+	@NotNull(message = "title cannot be null")
+	private String parentName;
+
+	@NotNull(message = "relation cannot be null")
+	private String relation;
+
+	
+	
+	
+	
+
+}

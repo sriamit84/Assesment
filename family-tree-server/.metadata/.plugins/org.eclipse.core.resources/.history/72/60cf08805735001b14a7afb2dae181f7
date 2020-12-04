@@ -1,0 +1,14 @@
+package com.comp.familyTree.service;
+
+import com.comp.familyTree.entities.Product;
+import com.comp.familyTree.entities.ProductPrice;
+import com.comp.familyTree.error.FamilyTreeException;
+import com.comp.familyTree.error.PersonNotFoundException;
+
+public interface ProductPriceService {
+
+	public Product saveProductPrice(Long productId, ProductPrice productPrice) throws FamilyTreeException, PersonNotFoundException;
+
+	public Product getProductPrice(Long productPriceId) throws FamilyTreeException, PersonNotFoundException;
+
+}

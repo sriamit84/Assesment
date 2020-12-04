@@ -1,0 +1,18 @@
+package com.comp.familyTree.service;
+
+import javax.validation.Valid;
+
+import com.comp.familyTree.entities.Product;
+import com.comp.familyTree.error.FamilyTreeException;
+import com.comp.familyTree.error.PersonNotFoundException;
+
+
+public interface PersonService {
+	
+	public Product saveProduct(Product product) throws FamilyTreeException;
+	
+	public Product getProductDetails(Long productId) throws RuntimeException, Exception;
+
+	public Product updateProduct(Long productId,  @Valid Product product) throws PersonNotFoundException, FamilyTreeException;
+
+}

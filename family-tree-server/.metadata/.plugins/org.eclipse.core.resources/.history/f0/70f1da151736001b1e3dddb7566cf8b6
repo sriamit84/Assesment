@@ -1,0 +1,7 @@
+PERSON_NOT_FOUND=Person with name: {0} not found
+PERSON_NOT_UPDATED=PERSON with id: {0} could not be updated
+PERSON_NOT_CREATED=PERSON with id: {0} could not be created
+ERROR=Error when fetching the details
+PERSON_PRICE_ERROR=Error when fetching the PERSON price with PERSON id: {0}
+PERSON_PRICE_NOT_FOUND=PERSON Price for the PERSON id: {0} not found
+PERSON_NOT_UPDATED=PERSON with name {0} could not be updated at the moment

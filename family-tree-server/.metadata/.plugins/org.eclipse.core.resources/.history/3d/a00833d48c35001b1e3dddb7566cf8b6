@@ -1,0 +1,78 @@
+package com.comp.familyTree.service.impl;
+
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.comp.familyTree.dao.FamilyTreeRepository;
+import com.comp.familyTree.entities.Person;
+import com.comp.familyTree.error.FamilyTreeException;
+import com.comp.familyTree.error.PersonNotFoundException;
+import com.comp.familyTree.service.PersonService;
+
+@Service
+public class PersonServiceImpl implements PersonService {
+
+	@Autowired
+	private FamilyTreeRepository productRepository;
+
+	@Override
+	@Transactional
+	public Person savePerson(Person person) throws FamilyTreeException {
+		try {
+			return productRepository.save(person);
+		} catch (Exception e) {
+			throw new FamilyTreeException("Error when saving the product with details :" + person.toString());
+		}
+
+	}
+
+	@Override
+	public Person getPersonDetails(String personName) throws FamilyTreeException {
+		try {
+			Optional<Person> productDetails = productRepository.findByPersonName(personName);
+			if (productDetails.isPresent())
+				return productDetails.get();
+			else {
+				throw new PersonNotFoundException("Person with name " + personName + " not found");
+			}
+		} catch (Exception e) {
+			throw new FamilyTreeException("Error when fetching the person with name :" + personName);
+		}
+	}
+
+	@Override
+	@Transactional
+	public Person updatePerson(String personName, @Valid Person person)
+			throws PersonNotFoundException, FamilyTreeException {
+		try {
+			Optional<Person> personDetails = productRepository.findByPersonName(personName);
+			if (personDetails.isPresent()) {
+				personDetails.get().setParentName(person.getParentName());
+				personDetails.get().setPersonName(person.getPersonName());
+				personDetails.get().setRelation(person.getRelation());
+				return productRepository.save(personDetails.get());
+			} else {
+				return productRepository.save(person);
+				//throw new PersonNotFoundException("Person with name " + personName + " not found");
+			}
+		} catch (Exception e) {
+			throw new FamilyTreeException("Error when fetching the person with name :" + personName);
+		}
+	}
+
+	@Override
+	public List<Person> getAllPersonDetails() throws FamilyTreeException {
+		try {
+			return productRepository.findAll();
+		} catch (Exception e) {
+			throw new FamilyTreeException("Error when fetching all person");
+		}
+	}
+
+}

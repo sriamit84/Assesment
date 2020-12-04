@@ -1,0 +1,14 @@
+package com.comp.familyTree.util;
+
+import java.util.List;
+
+import com.comp.familyTree.entities.Person;
+
+public class FamilyTreeUtil {
+
+	public static transformResponse(List<Person> person) {
+		
+		
+	}
+
+}

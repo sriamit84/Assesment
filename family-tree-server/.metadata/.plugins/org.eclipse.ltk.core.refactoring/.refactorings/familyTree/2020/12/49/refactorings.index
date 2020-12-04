@@ -1,0 +1,38 @@
+1606988605816	Delete element
+1606993086779	Rename package 'com.tatacliq.product'
+1606993108714	Rename package 'com.tatacliq.product.config'
+1606993128681	Rename package 'com.tatacliq.product.constants'
+1606993150911	Rename package 'com.tatacliq.product.controller'
+1606993166283	Rename package 'com.tatacliq.product.dao'
+1606993181637	Rename package 'com.tatacliq.product.entities'
+1606993198496	Rename package 'com.tatacliq.product.error'
+1606993212183	Rename package 'com.tatacliq.product.response'
+1606993228435	Rename package 'com.tatacliq.product.service'
+1606993241045	Rename package 'com.tatacliq.product.service.impl'
+1606993257575	Rename package 'com.tatacliq.product.util'
+1606993349395	Rename type 'ProductServiceApplication'
+1606993376781	Rename type 'ProductController'
+1606993382015	Delete element
+1606993395318	Rename type 'ProductRepository'
+1606993416307	Rename type 'ProductException'
+1606993481974	Rename type 'ProductResponseEntityExceptionHandler'
+1606993497661	Rename type 'ProductNotFoundException'
+1606993541129	Rename type 'ProductResponse'
+1606993549146	Delete element
+1606993556492	Delete element
+1606993569491	Rename type 'ProductService'
+1606993579351	Rename type 'ProductServiceImpl'
+1606994466156	Rename type 'Product'
+1606995402443	Delete elements
+1607017231848	Copy compilation unit
+1607018258848	Delete element
+1607020526196	Delete element
+1607023177026	Copy compilation unit
+1607074277030	Copy compilation unit
+1607074298156	Copy compilation unit
+1607074424728	Copy compilation unit
+1607074979949	Copy compilation unit
+1607078319408	Delete element
+1607078335305	Copy compilation unit
+1607078340269	Delete element
+1607079915571	Rename package 'com.tatacliq.product'

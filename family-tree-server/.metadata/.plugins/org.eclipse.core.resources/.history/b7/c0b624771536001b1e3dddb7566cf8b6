@@ -1,0 +1,26 @@
+package com.comp.familyTree.util;
+
+import java.util.List;
+
+import com.comp.familyTree.entities.Person;
+import com.comp.familyTree.entities.Relation;
+import com.comp.familyTree.model.FamilyTreeGraph;
+
+public class FamilyTreeUtil {
+
+	public static FamilyTreeGraph transformResponse(List<Relation> relations) {
+
+		FamilyTreeGraph familyTreeGraph = new FamilyTreeGraph();
+		for (Relation r : relations) {
+			familyTreeGraph.addNode(r.getPersonName());
+			if (r.getRelation() != null && !r.getParentName().equals("")) {
+				familyTreeGraph.addLink(r.getPersonName(), r.getRelation().getParentName(),
+						r.getRelation().getRelation());
+			}
+
+		}
+		return familyTreeGraph;
+
+	}
+
+}

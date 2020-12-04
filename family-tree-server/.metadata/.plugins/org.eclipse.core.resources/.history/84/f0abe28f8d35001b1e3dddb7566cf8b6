@@ -1,0 +1,13 @@
+package com.comp.familyTree.model;
+
+public class PersonModel {
+	
+	private String personName;
+	
+	private String parentName;
+	
+	private String relation;
+	
+	
+
+}

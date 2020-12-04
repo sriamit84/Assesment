@@ -1,0 +1,22 @@
+package com.comp.familyTree.service;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import com.comp.familyTree.error.FamilyTreeException;
+import com.comp.familyTree.error.PersonNotFoundException;
+import com.comp.familyTree.model.PersonModel;
+
+
+public interface PersonService {
+	
+	public PersonModel savePerson(PersonModel person) throws FamilyTreeException;
+	
+	public PersonModel getPersonDetails(String personName) throws RuntimeException, Exception;
+
+	public PersonModel updatePerson(String personName,  @Valid PersonModel person) throws PersonNotFoundException, FamilyTreeException;
+
+	public List<PersonModel> getAllPersonDetails() throws FamilyTreeException;
+
+}

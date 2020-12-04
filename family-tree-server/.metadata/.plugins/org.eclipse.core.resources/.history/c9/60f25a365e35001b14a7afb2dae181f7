@@ -1,0 +1,17 @@
+package com.comp.familyTree.dao;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.comp.familyTree.entities.Person;
+
+@Repository
+public interface FamilyTreeRepository extends JpaRepository<Person, Long> {
+
+	@Query(value=("SELECT * from person p where p.personName= ?1"),nativeQuery = true)
+	Optional<Person> findByPersonName(String personName);
+
+}

@@ -1,0 +1,40 @@
+package com.comp.familyTree.response;
+
+import com.comp.familyTree.entities.Data;
+import com.comp.familyTree.entities.Product;
+import com.comp.familyTree.entities.ResponseStatus;
+
+public class ProductResponse {
+
+	private String status;
+
+	public String getStatus() {
+		return status;
+	}
+
+	public Data<Product> getData() {
+		return data;
+	}
+
+	private Data<Product> data;
+
+	public ProductResponse() {
+		data = new Data<Product>();
+	}
+
+	public PersonResponse setStatus(ResponseStatus status) {
+		this.status = status.getCode();
+		return this;
+	}
+
+	public PersonResponse setItem(Product product) {
+		this.data.setItem(product);
+		return this;
+	}
+
+	public PersonResponse addErrorMessage(ErrorMessage errorMessage) {
+		this.data.addErrorMessage(errorMessage);
+		return this;
+	}
+
+}

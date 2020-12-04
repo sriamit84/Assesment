@@ -1,0 +1,96 @@
+package com.comp.familyTree.model;
+
+import java.util.List;
+
+public class FamilyTreeGraph {
+
+//	{
+//	    nodes: [
+//	      { id: "Amit" },
+//	      { id: "Ashish" },
+//	      { id: "Anshika" },
+//	      { id: "Avanish" },
+//	      { id: "Vishnu" },
+//	      { id: "Swami Dayal" },
+//	    ],
+//	    links: [
+//	      { source: "Vishnu", target: "Amit", label: "son" },
+//	      { source: "Vishnu", target: "Ashish", label: "son" },
+//	      {
+//	        source: "Vishnu",
+//	        target: "Anshika",
+//	        label: "daughter",
+//	      },
+//	      { source: "Vishnu", target: "Avanish", label: "son" },
+//	      {
+//	        source: "Swami Dayal",
+//	        target: "Vishnu",
+//	        label: "son",
+//	      },
+//	    ],
+//	  };
+
+	private List<Node> nodes;
+
+	private List<Link> links;
+	
+	public void addNode(String id) {
+		Node node= new Node(id);
+		this.nodes.add(node);
+	}
+	
+	public void addLink(String source, String target) {
+		Link link = new Link(source, target);
+		this.links.add(link);
+	}
+
+}
+
+class Node {
+	private String id;
+
+	Node(String id) {
+		this.id = id;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	
+}
+
+class Link {
+
+	private String source;
+
+	private String target;
+
+	Link(String source, String target) {
+		this.source = source;
+		this.target = target;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getTarget() {
+		return target;
+	}
+
+	public void setTarget(String target) {
+		this.target = target;
+	}
+	
+	
+
+}

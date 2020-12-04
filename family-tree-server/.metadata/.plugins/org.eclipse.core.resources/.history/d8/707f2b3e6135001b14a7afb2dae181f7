@@ -1,0 +1,23 @@
+package com.comp.familyTree.util;
+
+import java.util.List;
+
+import com.comp.familyTree.entities.Person;
+import com.comp.familyTree.model.FamilyTreeGraph;
+
+public class FamilyTreeUtil {
+
+	public static FamilyTreeGraph transformResponse(List<Person> persons) {
+		
+		FamilyTreeGraph familyTreeGraph= new FamilyTreeGraph();
+		for(Person p: persons) {
+			familyTreeGraph.addNode(p.getPersonName());
+			familyTreeGraph.addLink(p.getPersonName(), p.getParentName(),p.getRelation());
+			
+			
+		}
+		return null;
+		
+	}
+
+}

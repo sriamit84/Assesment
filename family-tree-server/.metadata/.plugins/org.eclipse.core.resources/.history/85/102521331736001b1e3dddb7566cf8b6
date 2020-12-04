@@ -1,0 +1,7 @@
+PERSON_NOT_FOUND=Person with name: {0} not found
+PERSON_NOT_UPDATED=PERSON with name: {0} could not be updated
+PERSON_NOT_CREATED=PERSON with name: {0} could not be created
+ERROR=Error when fetching the details
+RELATION_NOT_FOUND=Person with name: {0} not found
+RELATION_NOT_UPDATED=Relation with person name: {0} could not be updated
+RELATION_NOT_CREATED=Relation with name: {0} could not be created

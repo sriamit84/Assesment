@@ -1,0 +1,60 @@
+package com.comp.familyTree.entities;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+public class Relation {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long relationId;
+	
+	@NotNull(message = "person name cannot be null")
+	private String personName;	
+
+	private String parentName;
+
+	@NotNull(message = "relation cannot be null")
+	private String relation;
+
+	
+	
+
+	public Long getRelationId() {
+		return relationId;
+	}
+
+	public void setRelationId(Long relationId) {
+		this.relationId = relationId;
+	}
+
+	public String getPersonName() {
+		return personName;
+	}
+
+	public void setPersonName(String personName) {
+		this.personName = personName;
+	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+
+	public String getRelation() {
+		return relation;
+	}
+
+	public void setRelation(String relation) {
+		this.relation = relation;
+	}
+	
+	
+
+
+}
