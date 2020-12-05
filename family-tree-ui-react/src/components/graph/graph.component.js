@@ -62,7 +62,7 @@ export default class FamilyTree extends Component {
       mouseCursor: "pointer",
       opacity: 1,
       renderLabel: true,
-      size: 1500,
+      size: 1000,
       strokeColor: "black",
       strokeWidth: 1.5,
       svg: "",
@@ -71,7 +71,7 @@ export default class FamilyTree extends Component {
     link: {
       color: "#d3d3d3",
       fontColor: "black",
-      fontSize: 12,
+      fontSize: 10,
       fontWeight: "normal",
       highlightColor: "SAME",
       highlightFontSize: 8,

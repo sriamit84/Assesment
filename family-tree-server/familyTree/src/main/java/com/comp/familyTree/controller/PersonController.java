@@ -2,6 +2,8 @@ package com.comp.familyTree.controller;
 
 import java.io.File;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -86,6 +88,44 @@ public class PersonController {
 			PERSONResponse.addErrorMessage(new ErrorMessage(HTTPStatus.INTERNAL_SERVER_ERROR.getCode(),
 					messageSource.getMessage(Constants.ERROR, new Object[] { personName }, Locale.ENGLISH)));
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(PERSONResponse);
+		}
+	}
+	
+	/**
+	 * This rest API is to get the list of all the PERSONs
+	 * 
+	 * @param personName
+	 * @return Response with person details
+	 */
+	@GetMapping("/api/v1/person")
+	public ResponseEntity<List<Person>> getAllPersonDetails() {
+		long startTime = System.currentTimeMillis();
+		List<Person> persons= new ArrayList<Person>();
+		logger.info("START: getAllPersonDetails Service is called");
+		PersonResponse PERSONResponse = new PersonResponse();
+		try {
+			persons = personService.getAllPersonDetails();
+
+			if (persons == null || persons.isEmpty()) {
+				logger.error("No persons found" );
+				PERSONResponse.setStatus(ResponseStatus.FAILED)
+						.addErrorMessage(new ErrorMessage(HTTPStatus.NOT_FOUND.getCode(), messageSource
+								.getMessage(Constants.PERSON_NOT_FOUND, new Object[] { }, Locale.ENGLISH)));
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(persons);
+			} else {
+				logger.debug("got the person details : " + persons.toString());
+				
+				long endTime = System.currentTimeMillis();
+				logger.info("END: getPERSONDetails Service is completed in " + (endTime - startTime) + " ms");
+				return ResponseEntity.status(HttpStatus.OK).body(persons);
+
+			}
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			PERSONResponse.addErrorMessage(new ErrorMessage(HTTPStatus.INTERNAL_SERVER_ERROR.getCode(),
+					messageSource.getMessage(Constants.ERROR, new Object[] { }, Locale.ENGLISH)));
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(persons);
 		}
 	}
 

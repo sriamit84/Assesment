@@ -1,5 +1,6 @@
 import react, { Component } from "react";
-
+import { savePerson, getAllPersons } from "../../providers/familytree.service";
+import { PersonListComponent } from "../persons/personlist.component";
 class PersonComponent extends Component {
   constructor(props) {
     super(props);
@@ -25,22 +26,25 @@ class PersonComponent extends Component {
 
     console.log(this.data);
 
-    fetch("http://localhost:8080/familyTree/api/v1/person/", {
-      method: "POST",
-      body: JSON.stringify(this.data),
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.status == "success") {
-          alert("Record created successfully");
-          this.setState({ name: "" });
-        }
-      })
-      .catch((error) => alert("Error when creating the person"))
-      .finally(() => this.setState({ name: "", pname: "", relation: "" }));
+    savePerson(this.data)
+      .then(
+        (res) => {
+          if (res.status == "success") {
+            alert("Record created successfully");
+            this.setState({ name: "" });
+          } else {
+            alert("Error when creating the person");
+          }
+        },
+        (error) => alert("Error when creating the person")
+      )
+      .catch((error) => alert("Error when creating the person"));
+  };
+
+  showAllPersons = () => {
+    getAllPersons().then((res) => {
+      this.setState({ persons: res });
+    });
   };
 
   render() {
@@ -72,9 +76,19 @@ class PersonComponent extends Component {
               <div className="col-75">
                 <input type="submit" value="Add" />
                 <input type="button" value="Clear" onClick={this.clearAll} />
+                <input
+                  type="button"
+                  value="Show All"
+                  onClick={this.showAllPersons}
+                />
               </div>
             </div>
           </form>
+          {/* {this.state.persons && this.state.persons.length ? (
+            <PersonListComponent />
+          ) : (
+            ""
+          )} */}
         </div>
       </>
     );

@@ -1,5 +1,5 @@
 import react, { Component } from "react";
-
+import { saveRelation } from "../../providers/familytree.service";
 const inputParsers = {
   date(input) {
     const [month, day, year] = input.split("/");
@@ -41,22 +41,16 @@ class RelationComponent extends Component {
 
     console.log(this.data);
 
-    fetch("http://localhost:8080/familyTree/api/v1/relations/", {
-      method: "POST",
-      body: JSON.stringify(this.data),
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-      },
-    })
-      .then((res) => res.json())
+    saveRelation(this.data)
       .then((res) => {
         if (res.status == "success") {
           alert("Record created successfully");
           this.setState({ name: "", pname: "", relation: "" });
+        } else {
+          alert("Record could not be created");
         }
       })
-      .catch((error) => alert("Error when creating the relations"))
-      .finally(() => this.setState({ name: "", pname: "", relation: "" }));
+      .catch((error) => alert("Error when creating the relations"));
   };
 
   render() {
@@ -84,14 +78,14 @@ class RelationComponent extends Component {
             </div>
             <div className="row">
               <div className="col-25">
-                <label for="pname">Parent Name</label>
+                <label for="pname">Relative's Name</label>
               </div>
               <div className="col-75">
                 <input
                   type="text"
                   id="pname"
                   name="pname"
-                  placeholder="Enter Parent's Name"
+                  placeholder="Enter Relative's Name"
                   onChange={this.handleInputChange}
                   value={this.state.pname}
                   required
