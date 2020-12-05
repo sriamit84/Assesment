@@ -1,10 +1,10 @@
 import React, { useMemo, useState, useEffect, Component } from "react";
 import ReactDOM from "react-dom";
-import Tabs from "./tabs/tabs.component";
+import Tabs from "./components/tabs/tabs.component";
 import "./styles.css";
-import FamilyTree from "./graph.component";
-import RelationComponent from "./nodes/relation.component";
-import PersonComponent from "./nodes/person.component";
+import FamilyTree from "./components/graph/graph.component";
+import RelationComponent from "./components/nodes/relation.component";
+import PersonComponent from "./components/nodes/person.component";
 
 export default class App extends Component {
   render() {

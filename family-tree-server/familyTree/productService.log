@@ -23933,3 +23933,43 @@ com.comp.familyTree.controller.PersonController#updatePERSONDetails(String, Pers
 [2020-12-04T16:37:02.002Z] [org.springframework.test.context.support.AbstractTestContextBootstrapper] [main] [308] [INFO ] Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.comp.person.PersonServiceApplicationTests], using SpringBootContextLoader
 [2020-12-04T16:37:02.002Z] [org.springframework.test.context.support.AbstractContextLoader] [main] [264] [INFO ] Could not detect default resource locations for test class [com.comp.person.PersonServiceApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
 [2020-12-04T16:37:02.002Z] [org.springframework.test.context.support.AnnotationConfigContextLoaderUtils] [main] [83] [INFO ] Could not detect default configuration classes for test class [com.comp.person.PersonServiceApplicationTests]: PersonServiceApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+[2020-12-04T17:13:04.004Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m1s781ms).
+[2020-12-04T17:44:00.000Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=30m55s478ms).
+[2020-12-04T17:59:18.018Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m18s265ms).
+[2020-12-04T20:27:16.016Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h27m57s859ms).
+[2020-12-04T20:29:12.012Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m56s420ms).
+[2020-12-04T20:32:33.033Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m50s539ms).
+[2020-12-04T21:05:26.026Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=32m53s174ms).
+[2020-12-04T22:29:25.025Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h23m59s168ms).
+[2020-12-05T05:13:20.020Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6h43m24s678ms).
+[2020-12-05T06:02:11.011Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=48m51s334ms).
+[2020-12-05T07:43:27.027Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h41m16s256ms).
+[2020-12-05T08:13:42.042Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=30m15s144ms).
+[2020-12-05T10:16:29.029Z] [com.zaxxer.hikari.pool.HikariPool$HouseKeeper] [HikariPool-1 housekeeper] [779] [WARN ] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2h2m46s442ms).
+[2020-12-05T10:21:18.018Z] [com.comp.familyTree.controller.RelationsController] [http-nio-8080-exec-4] [109] [INFO ] START: getPersonDetails Service is called
+[2020-12-05T10:21:18.018Z] [org.hibernate.engine.jdbc.spi.SqlStatementLogger] [http-nio-8080-exec-4] [127] [DEBUG] 
+    select
+        relation0_.relation_id as relation1_1_,
+        relation0_.parent_name as parent_n2_1_,
+        relation0_.person_name as person_n3_1_,
+        relation0_.relation as relation4_1_ 
+    from
+        relation relation0_
+[2020-12-05T10:21:18.018Z] [org.hibernate.engine.jdbc.spi.SqlStatementLogger] [http-nio-8080-exec-4] [127] [DEBUG] 
+    select
+        person0_.person_id as person_i1_0_,
+        person0_.person_name as person_n2_0_ 
+    from
+        person person0_
+[2020-12-05T10:21:18.018Z] [com.comp.familyTree.controller.RelationsController] [http-nio-8080-exec-4] [119] [INFO ] END: getRelationDetails Service is completed in 43 ms
+[2020-12-05T10:21:30.030Z] [org.springframework.scheduling.concurrent.ExecutorConfigurationSupport] [SpringContextShutdownHook] [208] [INFO ] Shutting down ExecutorService 'applicationTaskExecutor'
+[2020-12-05T10:21:30.030Z] [org.springframework.orm.jpa.AbstractEntityManagerFactoryBean] [SpringContextShutdownHook] [598] [INFO ] Closing JPA EntityManagerFactory for persistence unit 'default'
+[2020-12-05T10:21:30.030Z] [org.hibernate.tool.schema.internal.SchemaDropperImpl$DelayedDropActionImpl] [SpringContextShutdownHook] [524] [INFO ] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+[2020-12-05T10:21:30.030Z] [org.hibernate.engine.jdbc.spi.SqlStatementLogger] [SpringContextShutdownHook] [127] [DEBUG] 
+    
+    drop table person if exists
+[2020-12-05T10:21:30.030Z] [org.hibernate.engine.jdbc.spi.SqlStatementLogger] [SpringContextShutdownHook] [127] [DEBUG] 
+    
+    drop table relation if exists
+[2020-12-05T10:21:30.030Z] [com.zaxxer.hikari.HikariDataSource] [SpringContextShutdownHook] [350] [INFO ] HikariPool-1 - Shutdown initiated...
+[2020-12-05T10:21:30.030Z] [com.zaxxer.hikari.HikariDataSource] [SpringContextShutdownHook] [352] [INFO ] HikariPool-1 - Shutdown completed.
