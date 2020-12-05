@@ -6,3 +6,10 @@
 3. Add Relation
 4. Update Relation
 5. Get All Relations
+
+### Pre-requisites
+You need to have maven installed on your machine
+
+## You can run this application using below command:
+
+mvn spring-boot:run
