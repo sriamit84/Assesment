@@ -10,6 +10,6 @@
 ### Pre-requisites
 You need to have maven installed on your machine
 
-## You can run this application using below command:
+#### You can run this application using below command:
 
 mvn spring-boot:run
