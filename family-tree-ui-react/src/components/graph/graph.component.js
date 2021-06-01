@@ -1,3 +1,10 @@
+/*
+* 
+* This file is maintaining relationship between nodes, 
+* It uses react-d3-graph module to create relationship between nodes
+*
+*/
+
 import react, { Component } from "react";
 import { Graph } from "react-d3-graph";
 export default class FamilyTree extends Component {
@@ -6,6 +13,7 @@ export default class FamilyTree extends Component {
     this.state = { nodes: [], links: [] };
   }
 
+  // Make a call to server to get all the relations
   componentDidMount() {
     fetch("http://localhost:8080/familyTree/api/v1/relations/", {
       method: "GET",
@@ -16,6 +24,7 @@ export default class FamilyTree extends Component {
       .then((res) => res.json())
       .then((res) => {
         console.log(res);
+      // Set the response in status
         this.setState({ data: res });
       })
       .catch((error) => {
@@ -24,6 +33,9 @@ export default class FamilyTree extends Component {
       });
   }
 
+  /*
+    This is the config which intern be used by d3-graph file to show the relationships
+  */
   myConfig = {
     automaticRearrangeAfterDropNode: true,
     collapsible: false,
@@ -86,12 +98,14 @@ export default class FamilyTree extends Component {
       markerWidth: 6,
     },
   };
-
+  
+  // This function takes care of node position changes
   onNodePositionChange = function (nodeId, x, y) {
     window.alert(
       `Node ${nodeId} is moved to new position. New position is x= ${x} y= ${y}`
     );
   };
+  // render the graph of relations and their linkage
   render() {
     return this.state.data &&
       this.state.data.nodes &&
