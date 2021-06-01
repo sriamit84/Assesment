@@ -1,3 +1,7 @@
+/*
+* This component is show the tab inside tabs structure, this is made generic component, it can be used anywhere in the application to show the tab
+*/
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 class Tab extends Component {
@@ -7,11 +11,13 @@ class Tab extends Component {
     onClick: PropTypes.func.isRequired,
   };
 
+  // onClick of tab make the tab active and perform action
   onClick = () => {
     const { label, onClick } = this.props;
     onClick(label);
   };
 
+  // Render the tab structure
   render() {
     const {
       onClick,
