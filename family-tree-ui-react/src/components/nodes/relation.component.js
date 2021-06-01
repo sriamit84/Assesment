@@ -1,5 +1,12 @@
+/*
+* This component is used to update the relations between persons, 
+* A person can be related to another person as wife, husband, brother, sister, mother , father etc
+*/
+
 import react, { Component } from "react";
 import { saveRelation } from "../../providers/familytree.service";
+
+// this object has all utility methods
 const inputParsers = {
   date(input) {
     const [month, day, year] = input.split("/");
@@ -12,6 +19,7 @@ const inputParsers = {
     return parseFloat(input);
   },
 };
+
 class RelationComponent extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +32,7 @@ class RelationComponent extends Component {
 
   componentDidMount() {}
 
+  // on change of name of person the value will be set in the state
   handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
@@ -32,6 +41,7 @@ class RelationComponent extends Component {
       [name]: value,
     });
   };
+    // This method handles submit action and stores the data into state 
   handleSubmit = (event) => {
     event.preventDefault();
     this.data = {};
@@ -39,8 +49,7 @@ class RelationComponent extends Component {
     this.data.parentName = this.state.pname;
     this.data.relation = this.state.relation;
 
-    console.log(this.data);
-
+   // Save relation will be called which will save the relation on the backend server
     saveRelation(this.data)
       .then((res) => {
         if (res.status == "success") {
@@ -53,6 +62,7 @@ class RelationComponent extends Component {
       .catch((error) => alert("Error when creating the relations"));
   };
 
+  // This render method will render the fields to map the relationship between two persons
   render() {
     return (
       <>
