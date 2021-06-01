@@ -1,16 +1,25 @@
+/*
+* This component is used to render the Person with attributes like name and on click of show all it will show the detail of 
+* the persons related with this person.
+*/
+
 import react, { Component } from "react";
 import { savePerson, getAllPersons } from "../../providers/familytree.service";
 import { PersonListComponent } from "../persons/personlist.component";
 class PersonComponent extends Component {
+  
+  // Initialized person with state
   constructor(props) {
     super(props);
     this.state = { name: "" };
   }
 
+  // clear the person from state
   clearAll = (e) => {
     this.setState({ name: "" });
   };
 
+  // set the value of person name and value as key value pair in state
   handleInputChange = (event) => {
     const value = event.target.value;
     const name = event.target.name;
@@ -23,9 +32,8 @@ class PersonComponent extends Component {
     event.preventDefault();
     this.data = {};
     this.data.personName = this.state.name;
-
-    console.log(this.data);
-
+    // save person method is called which will save the person details in backend, on success we will show the alert on home page
+    // that person creation is successful
     savePerson(this.data)
       .then(
         (res) => {
@@ -40,13 +48,15 @@ class PersonComponent extends Component {
       )
       .catch((error) => alert("Error when creating the person"));
   };
-
+  
+  // Function to show all the persons stored in the state
   showAllPersons = () => {
     getAllPersons().then((res) => {
       this.setState({ persons: res });
     });
   };
 
+  // This method will render the text box to enter person details and save, one new node will be created for this person on the backend
   render() {
     return (
       <>
@@ -84,11 +94,7 @@ class PersonComponent extends Component {
               </div>
             </div>
           </form>
-          {/* {this.state.persons && this.state.persons.length ? (
-            <PersonListComponent />
-          ) : (
-            ""
-          )} */}
+          
         </div>
       </>
     );
