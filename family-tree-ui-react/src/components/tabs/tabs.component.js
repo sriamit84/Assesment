@@ -1,3 +1,7 @@
+/*
+*  This component is to show the tabs on UI which will intern have tab component, This is to make the tab structure generic
+*/
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Tab from "./tab.component";
@@ -6,6 +10,7 @@ class Tabs extends Component {
     children: PropTypes.instanceOf(Array).isRequired,
   };
 
+  // inside the constructor update the default tab to first one
   constructor(props) {
     super(props);
 
@@ -14,10 +19,12 @@ class Tabs extends Component {
     };
   }
 
+  // set the tab as active which was clicked
   onClickTabItem = (tab) => {
     this.setState({ activeTab: tab });
   };
 
+  // render the tabs structure, children is the list of tabs which need to be shown
   render() {
     const {
       onClickTabItem,
