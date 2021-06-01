@@ -1,3 +1,8 @@
+/*
+* This is the provider which has all the services for persons
+*/
+
+// This function saves the person details on backend
 export function savePerson(person) {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:8080/familyTree/api/v1/person/", {
@@ -15,6 +20,7 @@ export function savePerson(person) {
   });
 }
 
+// This function saves the person relations on backend
 export function saveRelation(relation) {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:8080/familyTree/api/v1/relations/", {
@@ -32,6 +38,7 @@ export function saveRelation(relation) {
   });
 }
 
+// This function gets the persons and their relations from backend
 export function getAllPersons(relation) {
   return new Promise((resolve, reject) => {
     fetch("http://localhost:8080/familyTree/api/v1/person", {
